@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="css/edit.css">
+    </head>
+    <body>
+        <div id="div_container" >
+            <div id="div_fruit_list" >
+                <p class="center f30">编辑库存信息</p>
+<!--                <form th:action="@{/phone.do}" method="post">-->
+                <form action="phone.do" method="post">
+                    <input type="hidden" name="operate" value="add"/>
+                    <table id="tbl_fruit">
+                        <tr>
+                            <th class="w20">型号</th>
+<!--                        <td><input type="text" name="pname" th:value="${phone.name}"/></td>-->
+                            <td><input type="text" name="name"/></td>
+                        </tr>
+                        <tr>
+                            <th class="w20">价格</th>
+                            <td><input type="text" name="price"/></td>
+                        </tr>
+                        <tr>
+                            <th class="w20">库存</th>
+                            <td><input type="text" name="count"/></td>
+                        </tr>
+                        <tr>
+                            <th class="w20">处理器</th>
+                            <td><input type="text" name="soc"/></td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <input type="submit" value="添加"/>
+                            </th>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/index.css">
+        <script src="js/index.js"></script>
+    </head>
+    <body>
+        <div id="div_container" >
+            <div id="div_fruit_list" >
+                <p class="center f30">欢迎使用手机库存后台管理系统</p>
+                <div style="border: 0px solid red;width: 60%;margin-left: 20%;text-align:left;">
+                    <form th:action="@{/phone.do}" method="post" style="margin-left: 20%">
+                        <input type="hidden" value="search" name="oper">
+                        请输入关键字 : <input type="text" name="keyword" th:value="${session.keyword}">
+                        <input type="submit" value="查询" class="btn">
+                    </form>
+                </div>
+                <table id="tbl_fruit" >
+                    <tr>
+                        <th class="w20">型号</th>
+                        <th class="w20">价格</th>
+                        <th class="w20">库存</th>
+                        <th class="w20">处理器</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(session.phoneList)}">
+                        <td colspan="4">对不起,库存为空！</td>
+                    </tr>
+                    <tr th:unless="${#lists.isEmpty(session.phoneList)}" th:each="phone : ${session.phoneList}">
+<!--                        <td><a th:text="${phone.name}" th:href="@{'/edit.do?pname='+${phone.name}}"></td>-->
+                        <td><a th:text="${phone.name}" th:href="@{/phone.do(name=${phone.name},operate='edit')}"></a></td>
+                        <td th:text="${phone.price}"></td>
+                        <td th:text="${phone.count}"></td>
+                        <td th:text="${phone.soc}"></td>
+<!--                        <td><img src="imgs/del.jpg" class="delImg"  th:onclick="'delPhone('+${phone.name}+')'"/></td>-->
+                        <td><img src="imgs/del.jpg" class="delImg" th:onclick="delPhone([[${phone.name}]])"/></td>
+                    </tr>
+                </table>
+                <div style="border: 0px solid red;width: 60%;margin-left: 20%;text-align:left;">
+                    <div style="padding-top:2px">
+                        <input type="button" value="首 页"  onclick="page(1)" th:disabled="${session.page == 1}"/>
+                        <input type="button" value="上一页"  th:onclick="page([[${session.page - 1}]])"  th:disabled="${session.page == 1}"/>
+                        <input type="button" value="下一页" th:onclick="page([[${session.page + 1}]])"  th:disabled="${session.page == session.pageCount}"/>
+                        <input type="button" value="尾 页"  th:onclick="page([[${session.pageCount}]])" th:disabled="${session.page == session.pageCount}"/>
+                    </div>
+                    <a th:href="@{/add.html}" style="border: 0px;margin-bottom: 4px;display:block;text-align: right">添加新库存记录</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
