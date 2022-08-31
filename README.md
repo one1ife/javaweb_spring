@@ -1,5 +1,5 @@
-### 基于JavaWeb搭建简易的手机后台管理系统
+### 基于JavaWeb搭建简易的系统
 
 ---
 
-手写的一个简单的Spring实现
+手写的一个简单的Spring+SpringMVC实现
